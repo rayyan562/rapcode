@@ -1,0 +1,4 @@
+@EndUserText.label: 'sd for travel'
+define service ZSD_SERCM_PROD {
+  expose zce_zsercm_prod;
+}

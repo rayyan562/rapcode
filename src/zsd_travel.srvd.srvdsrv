@@ -1,0 +1,5 @@
+@EndUserText.label: 'sd for travel'
+define service Zsd_travel {
+  expose zc_travhdr    as Travel;
+  expose zc_booking_vw as Booking;
+}

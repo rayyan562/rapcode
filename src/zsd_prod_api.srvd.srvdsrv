@@ -1,0 +1,4 @@
+@EndUserText.label: 'sd for products'
+define service Zsd_prod_Api {
+  expose zce_prod_api as Products;
+}

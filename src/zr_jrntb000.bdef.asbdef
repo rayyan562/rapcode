@@ -1,0 +1,47 @@
+managed with additional save implementation in class ZBP_R_JRNTB000 unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_JRNTB000 alias R_JRNTB000
+persistent table ZJRNTB
+extensible
+draft table ZJRNTB000_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+   TravelID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   TravelID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZJRNTB corresponding extensible
+  {
+    TravelID = TRAVEL_ID;
+    Description = DESCRIPTION;
+    Status = STATUS;
+    LocalCreatedBy = LOCAL_CREATED_BY;
+    LocalCreatedAt = LOCAL_CREATED_AT;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+
+}

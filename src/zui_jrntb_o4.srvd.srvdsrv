@@ -1,0 +1,13 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_JRNTB'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_JRNTB'
+  }
+}
+define service ZUI_JRNTB_O4
+  provider contracts odata_v4_ui {
+  expose ZC_JRNTB      as Travel;
+  expose zi_changelogs as Logs;
+}

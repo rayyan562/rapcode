@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_TRAVTB000'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_TRAVTB000'
+  }
+}
+define service ZUI_TRAVTB000_O4 provider contracts odata_v4_ui {
+  expose ZC_TRAVTB000 as R_TRAVTB000;
+}

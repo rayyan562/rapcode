@@ -1,0 +1,4 @@
+@EndUserText.label: 'sd for travel'
+define service Zsd_ce_trav {
+  expose zce_travel as Travel;
+}

@@ -1,0 +1,26 @@
+projection implementation in class zbp_c_travhdr unique;
+strict ( 2 );
+use draft;
+
+define behavior for zc_travhdr alias travel
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Activate;
+  use action Discard;
+  use action Edit;
+  use action Resume;
+  use action Prepare;
+
+  use association _Item { create; with draft; }
+}
+
+define behavior for zc_booking_vw alias booking
+{
+  use update;
+  use delete;
+
+  use association _header;
+}

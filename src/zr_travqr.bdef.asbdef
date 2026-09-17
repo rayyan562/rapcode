@@ -1,0 +1,51 @@
+managed implementation in class ZBP_R_TRAVQR unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_TRAVQR alias R_TRAVQR
+persistent table ZTRAVQR
+extensible
+draft table ZTRAVQR_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( mandatory : create )
+   TravelID;
+
+  field ( readonly )
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   TravelID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  determination qrcode on save { create; }
+
+  mapping for ZTRAVQR corresponding extensible
+  {
+    TravelID = TRAVEL_ID;
+    Description = DESCRIPTION;
+    Status = STATUS;
+    LocalCreatedBy = LOCAL_CREATED_BY;
+    LocalCreatedAt = LOCAL_CREATED_AT;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+    Qrcode = QRCODE;
+  }
+
+}

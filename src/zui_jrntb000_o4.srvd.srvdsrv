@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_JRNTB000'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_JRNTB000'
+  }
+}
+define service ZUI_JRNTB000_O4 provider contracts odata_v4_ui {
+  expose ZC_JRNTB000 as R_JRNTB000;
+}

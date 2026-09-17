@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_TRAVQR'
+@MappingRole: true
+define role ZC_TRAVQR {
+  grant select on ZC_TRAVQR
+  where INHERITING CONDITIONS FROM ENTITY ZR_TRAVQR REPLACING { ROOT WITH _BaseEntity };
+}

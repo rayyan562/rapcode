@@ -1,0 +1,61 @@
+managed implementation in class ZBP_R_TRAVTB unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_TRAVTB alias R_TRAVTB
+persistent table ZTRAVTB
+extensible
+draft table ZTRAVTB_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global,instance )
+{
+  field ( mandatory : create )
+   TravelID;
+
+  field ( readonly )
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   TravelID;
+
+
+  create;
+  update(precheck);
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  action UpdateStatus  result[1] $self;
+  action ShowTotal;
+  factory action CopyTravel[1];
+  static factory action CreateRecord[1] ;
+  action(features : instance) Clear result [1] $self;
+  validation validate_status on save { create; update; }
+  determination gettravelplace on modify { field Status;}
+  side effects { field Status affects field Description;}
+  mapping for ZTRAVTB corresponding extensible
+  {
+    TravelID = TRAVEL_ID;
+    BeginDate = BEGIN_DATE;
+    EndDate = END_DATE;
+    BookingFee = BOOKING_FEE;
+    TotalPrice = TOTAL_PRICE;
+    CurrencyCode = CURRENCY_CODE;
+    Description = DESCRIPTION;
+    Status = STATUS;
+    LocalCreatedBy = LOCAL_CREATED_BY;
+    LocalCreatedAt = LOCAL_CREATED_AT;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+
+}
